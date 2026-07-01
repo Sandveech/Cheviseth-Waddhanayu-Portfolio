@@ -1,0 +1,23 @@
+.nav-container {
+    height: 80px;
+}
+
+nav {
+    height: 100%;
+}
+
+.nav-background {
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-color);
+    height: 100%;
+    padding: 32px;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    gap: 32px;
+    width: 100%;
+}

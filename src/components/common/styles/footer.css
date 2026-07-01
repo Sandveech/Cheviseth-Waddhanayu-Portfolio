@@ -1,0 +1,18 @@
+@import "/src/data/styles.css";
+
+footer {
+    height: 80px;
+    background-color: var(--secondary-color);
+    border-top: 1px solid var(--quarternary-color);
+}
+
+.footer-credits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.footer-credits-text {
+    color: var(--text-color);
+}

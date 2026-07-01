@@ -1,0 +1,11 @@
+* {
+    font-family: "Space Grotesk", sans-serif;
+}
+
+html, body, :root {
+    background-color: var(--tertiary-color);
+}
+
+Link {
+    color: var(--primary-color);
+}
