@@ -14,6 +14,9 @@ app.use(cors());
 app.use(express.json());
 
 // routes
+const messageRoutes = require('./routes/messageRoutes.js');
+app.use('/api/messages', messageRoutes);
+
 const projectRoutes = require('./routes/projectRoutes.js');
 app.use('/api/projects', projectRoutes);
 

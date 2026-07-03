@@ -1,6 +1,7 @@
 @import "../../../data/styles.css";
 
 .nav-container {
+    display: none;
     position: sticky;
     top: 0px;
     z-index: 999;
@@ -11,7 +12,7 @@
 .nav-background {
     height: 64px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: var(--secondary-color);
     padding: 24px;
@@ -25,12 +26,7 @@ a {
 .nav-list {
     display: flex;
     list-style: none;
-    justify-content: flex-end;
-    gap: 32px;
-}
-
-.nav-item.active a {
-    color: var(--primary-color);
+    gap: 48px;
 }
 
 .nav-item a {
@@ -42,8 +38,12 @@ a {
     transition: color 0.1s ease-in-out;
 }
 
-@media (max-width: 600px) {
-    .nav-list {
-        display: none;
+/* @media screen and (min-width: 768px) {
+
+} */
+
+@media screen and (min-width: 1024px) {
+    .nav-container {
+        display: block;
     }
 }

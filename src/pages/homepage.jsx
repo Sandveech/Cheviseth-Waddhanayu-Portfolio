@@ -3,7 +3,10 @@ import { Helmet } from "react-helmet";
 
 import NavBar from "../components/common/navBar.jsx";
 import Footer from "../components/common/footer.jsx";
+import ProjectsList from "../components/projects/projectsList.jsx";
+import ContactForm from "../components/contact/contactForm.jsx";
 
+import INFO from "../data/user.js";
 import Portrait from "../assets/portrait.webp";
 
 import "./styles/homepage.css";
@@ -12,31 +15,49 @@ const Homepage = () => {
     return (
         <>
             <div className="page-content">
-                <NavBar active="home"/>
-                <div className="hero-container">
+                <div className="header-container">
+                    <div className="header-background">
+                        <h1>CHEVISETH WADDHANAYU</h1>
+                    </div>
+                </div>
+                <NavBar/>
+                <div className="hero-container" id="home">
                     <div className="hero-background">
                         <div className="hero-overlay">
                             <div className="hero-text">
-                                <h1>Hi, I am Cheviseth Waddhanayu</h1>
-                                <h2>Software Engineering Student</h2>
+                                <h2>{INFO.main.title}</h2><br/>
+                                <button><a href="#projects">View My Projects</a></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={"container projects-container"}>
-                    <div className="projects-background">
-                        <p>meow</p>
-                    </div>
-                </div>
-                <div className={"container profile-container"}>
-                    <div className="profile-background">
+                <div className={"container about-container"} id="about">
+                    <h2>ABOUT</h2><br/>
+                    <div className="about-background">
                         <img src={Portrait} alt="nayu-portrait" className="portrait-img"/>
-                        <p>Hi! I'm Nayu, a Cambodia-based programmer. I have love combining technicality and creativity through the development of video games.</p>
+                        <p>{INFO.about.description}</p>
                     </div>
                 </div>
-                <div className={"container socials-container"}>
-                    <div className="socials-background">
-                        <p>meow</p>
+                <div className={"container projects-container"} id="projects">
+                    <h2>PROJECTS</h2><br/>
+                    <div className="projects-background">
+                        <ProjectsList/>
+                    </div>
+                </div>
+                <div className={"container contact-container"} id="contact">
+                    <div className="contact-info-container">
+                        <h2>CONTACT INFO</h2><br/>
+                        <div className="contact-info-background">
+                            <p>waddhnayucheviseth@gmail.com</p>
+                            <a href={INFO.links.linkedin}>LinkedIn</a>
+                            <a href={INFO.links.github}>GitHub</a>
+                        </div>
+                    </div>
+                    <div className="inquiries-container">
+                        <h2>INQUIRIES</h2><br/>
+                        <div className="inquiries-background">
+                            <ContactForm/>
+                        </div>
                     </div>
                 </div>
                 <Footer/>

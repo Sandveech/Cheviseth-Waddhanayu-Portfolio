@@ -8,5 +8,36 @@ html, body, :root {
 }
 
 .container {
-    padding: 20px 15%;
+    padding: 20px 5%;
+}
+
+.required-star {
+    color: #ae2334;
+}
+
+a {
+    text-decoration: underline;
+    color: var(--text-color);
+    transition: color 0.1s ease-in-out;
+}
+
+a:hover {
+    color: var(--primary-color);
+    transition: color 0.1s ease-in-out;
+}
+
+button {
+    border: none;
+}
+
+@media screen and (min-width: 768px) {
+   .container {
+        padding: 20px 10%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        padding: 20px 15%;
+    }
 }

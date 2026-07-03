@@ -4,4 +4,9 @@
     --tertiary-color: #0c0c0e;
     --quarternary-color: #7e818b;
     --text-color: #d8dee7;
+    --gap-tiny: 4px;
+    --gap-small: 8px;
+    --gap-moderate: 16px;
+    --gap-big: 32px;
+    --gap-large: 64px;
 }

@@ -22,6 +22,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const project = await Project.findById(req.params.id);
+        res.json(projects);
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
 router.post('/', requireAdmin, async (req, res) => {
     try {
         const newProject = new Project(req.body);

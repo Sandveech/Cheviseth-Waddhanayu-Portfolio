@@ -22,7 +22,7 @@ const ProjectForm = ({ adminPassword }) => {
         setFormData((prev) => ({
             ...prev,
             [name]: type === 'checkbox' ? checked : value
-        }))
+        }));
     }
 
     const handleSubmit = async (e) => {
@@ -56,11 +56,11 @@ const ProjectForm = ({ adminPassword }) => {
             }
             else {
                 const errData = await response.json();
-                setStatus(`Error: ${errData.error || 'Failed to save project'}`);
+                setStatus(`Error: ${errData.error || 'Failed to save project.'}`);
             }
         }
         catch (error) {
-            setStatus('Network error. Is your backend server running?');
+            setStatus('Network error. Could not connect to server.');
         }
     }
 
@@ -114,6 +114,7 @@ const ProjectForm = ({ adminPassword }) => {
                         <label htmlFor="featured">Feature this project</label>
                     </div>
                     <button type="submit">Save Project to Database</button>
+                    {status && <p style={{ fontWeight:'bold', marginTop: '15px' }}>{status}</p>}
                 </form>
             </div>
         </>
