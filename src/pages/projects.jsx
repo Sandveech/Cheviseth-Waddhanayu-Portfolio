@@ -8,7 +8,7 @@ const Projects = () => {
     return (
         <>
             <div className="page-content">
-                <NavBar/>
+                <NavBar active="projects"/>
                 <Footer/>
             </div>
         </>

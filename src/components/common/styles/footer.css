@@ -1,7 +1,7 @@
 @import "/src/data/styles.css";
 
 footer {
-    height: 80px;
+    height: 64px;
     background-color: var(--secondary-color);
     border-top: 1px solid var(--quarternary-color);
 }

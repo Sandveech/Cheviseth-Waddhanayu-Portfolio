@@ -1,17 +1,25 @@
-.nav-container {
-    height: 80px;
-}
+@import "../../../data/styles.css";
 
-nav {
-    height: 100%;
+.nav-container {
+    position: sticky;
+    top: 0px;
+    z-index: 999;
+    width: 100%;
+    border-bottom: 1px solid var(--quarternary-color);
 }
 
 .nav-background {
+    height: 64px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--secondary-color);
-    height: 100%;
-    padding: 32px;
+    padding: 24px;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 .nav-list {
@@ -19,5 +27,23 @@ nav {
     list-style: none;
     justify-content: flex-end;
     gap: 32px;
-    width: 100%;
+}
+
+.nav-item.active a {
+    color: var(--primary-color);
+}
+
+.nav-item a {
+    transition: color 0.1s ease-in-out;
+}
+
+.nav-item a:hover {
+    color: var(--primary-color);
+    transition: color 0.1s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .nav-list {
+        display: none;
+    }
 }

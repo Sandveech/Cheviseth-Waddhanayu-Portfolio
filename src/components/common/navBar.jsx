@@ -8,26 +8,27 @@ const NavBar = (props) => {
 
     return (
         <>
-            <div className="nav-container">
-                <nav className="navbar">
+            <nav className="nav-container">
+                <div className="navbar">
                     <div className="nav-background">
+                        <Link to="/">Cheviseth Waddhanayu</Link>
                         <ul className="nav-list">
-                            <li>
-                               <Link to="/">Home</Link> 
+                            <li className={ active === "home" ? "nav-item active" : "nav-item" }>
+                            <Link to="/">Home</Link> 
                             </li>
-                            <li>
+                            <li className={ active === "about" ? "nav-item active" : "nav-item" }>
                                 <Link to="/about">About</Link>
                             </li>
-                            <li>
-                                <Link to="/projects">Project</Link>
+                            <li className={ active === "projects" ? "nav-item active" : "nav-item" }>
+                                <Link to="/projects">Projects</Link>
                             </li>
-                            <li>
+                            <li className={ active === "contact" ? "nav-item active" : "nav-item" }>
                                 <Link to="/contact">Contact</Link>
                             </li>
                         </ul>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </>
     )
 }

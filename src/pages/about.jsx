@@ -8,7 +8,7 @@ const About = () => {
     return (
         <>
             <div className="page-content">
-                <NavBar/>
+                <NavBar active="about"/>                
                 <Footer/>
             </div>
         </>

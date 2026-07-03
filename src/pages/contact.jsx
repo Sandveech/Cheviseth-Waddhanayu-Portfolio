@@ -8,7 +8,7 @@ const Contact = () => {
     return (
         <>
             <div className="page-content">
-                <NavBar/>
+                <NavBar active="contact"/>
                 <Footer/>
             </div>
         </>

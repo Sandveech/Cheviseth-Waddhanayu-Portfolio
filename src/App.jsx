@@ -7,6 +7,7 @@ import About from "./pages/about.jsx";
 import Projects from './pages/projects.jsx';
 import Contact from './pages/contact.jsx';
 import NotFound from './pages/404.jsx';
+import AdminPage from './pages/adminPage.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<About />}/>
         <Route path="/projects" element={<Projects />}/>
         <Route path="/contact" element={<Contact />}/>
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<NotFound />}/>
       </Routes>  
     </div>
