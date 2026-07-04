@@ -70,7 +70,8 @@ const ContactForm = () => {
                     <textarea name="message" value={formData.message} onChange={handleChange} id="message" required></textarea>
                 </div>
                 <button type="submit">Send Message</button>
-            </form>
+            </form><br/>
+            {status && <p>{status}</p>}
         </>
     )
 }

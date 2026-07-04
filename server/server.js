@@ -23,6 +23,10 @@ app.use('/api/projects', projectRoutes);
 const authRoutes = require('./routes/authRoutes.js');
 app.use('/api/auth', authRoutes);
 
+app.get("/page", async (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'page.html'));
+});
+
 // db connection
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri)
