@@ -14,6 +14,7 @@ const ProjectSchema = new mongoose.Schema({
     challenges: String,
     lessonsLearned: String,
     featured: { type: Boolean, default: false },
+    highlighted: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now }
 });
 

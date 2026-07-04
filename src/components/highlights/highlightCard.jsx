@@ -1,11 +1,11 @@
 import React from 'react';
 
-import TechnologyTag from './technologyTag';
+import TechnologyTag from '../projects/technologyTag';
 
-import "./styles/projectCard.css";
+import "./styles/highlightCard.css";
 
-const ProjectCard = ({ project }) => {
-    if (!project.featured) { return null; }
+const HighlightCard = ({ project }) => {
+    if (!project.highlighted) { return null; }
 
     return (
         <>
@@ -38,39 +38,10 @@ const ProjectCard = ({ project }) => {
                             </div>
                         </div>
                     )}
-                    {project.githubUrl && (
-                        <div className="github">
-                           <a href={project.githubUrl}>Project GitHub</a>
-                        </div>
-                    )}
-                    {project.contribution && (
-                        <div className="contribution">
-                            <h4>Contribution</h4>
-                            <p>{project.contribution}</p>
-                        </div>
-                    )}
-                    {project.problem && (
-                        <div class="problem">
-                            <h4>Problem</h4>
-                            <p>{project.problem}</p>
-                        </div>
-                    )}
-                    {project.challenges && (
-                        <div className="challenges">
-                            <h4>Challenges</h4>
-                            <p>{project.challenges}</p>
-                        </div>
-                    )}
-                    {project.lessonsLearned && (
-                        <div className="lessons-learned">
-                            <h4>Lessons Learned</h4>
-                            <p>{project.lessonsLearned}</p>
-                        </div>
-                    )}
                 </div>
             </div>
         </>
     )
 }
 
-export default ProjectCard;
+export default HighlightCard;

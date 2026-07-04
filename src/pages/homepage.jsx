@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../components/common/navBar.jsx";
 import Footer from "../components/common/footer.jsx";
 import ContactForm from "../components/contact/contactForm.jsx";
+import HighlightsList from "../components/highlights/highlightsList.jsx";
 
 import INFO from "../data/user.js";
 import Portrait from "../assets/portrait.webp";
@@ -35,10 +36,8 @@ const Homepage = () => {
                 <div className={"container highlights-container"} id="highlights">
                     <h2>HIGHLIGHTS</h2><br/>
                     <div className="highlights-background">
-                        <p>meow</p>
-                        <p>meow</p>
-                        <p>meow</p>
-                        <p>meow</p>
+                       <HighlightsList/> 
+                       <button className="see-more-btn"><Link to="/projects">See More Projects</Link></button>
                     </div>
                 </div>
                 <div className={"container contact-container"} id="contact">

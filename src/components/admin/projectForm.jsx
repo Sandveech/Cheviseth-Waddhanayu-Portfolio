@@ -5,7 +5,7 @@ const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
     const [formData, setFormData] = useState({
         title: '', date: '', category: '', description: '', problem: '',
         technologies: '', imageUrl: '', githubUrl: '', liveUrl: '',
-        contribution: '', challenges: '', lessonsLearned: '', featured: false
+        contribution: '', challenges: '', lessonsLearned: '', featured: false, highlighted: false
     });
 
     const [status, setStatus] = useState('');
@@ -25,7 +25,8 @@ const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
                 contribution: projectToEdit.contribution || '',
                 challenges: projectToEdit.challenges || '',
                 lessonsLearned: projectToEdit.lessonsLearned || '',
-                featured: !!projectToEdit.featured
+                featured: !!projectToEdit.featured,
+                highlighted: !!projectToEdit.highlighted
             });
         }
     }, [projectToEdit]);
@@ -144,6 +145,10 @@ const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
                 <div className="checkbox-form">
                     <input type="checkbox" name="featured" id="featured" checked={formData.featured} onChange={handleChange}/>
                     <label htmlFor="featured">Feature this project</label>
+                </div>
+                <div className="checkbox-form">
+                    <input type="checkbox" name="highlighted" id="highlighted" checked={formData.highlighted} onChange={handleChange}/>
+                    <label htmlFor="highlighted">Highlight this project</label>
                 </div>
                 <button type="submit">{projectToEdit ? 'Update Project' : 'Save Project to Database'}</button>
                 {status && <p style={{ fontWeight:'bold', marginTop: '15px' }}>{status}</p>}

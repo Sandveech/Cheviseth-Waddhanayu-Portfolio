@@ -36,11 +36,18 @@
 }
 
 .highlights-container {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); 
 }
 
 .highlights-background {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: var(--gap-big);
+}
 
+.see-more-btn {
+    width: fit-content;
 }
 
 .contact-container {
@@ -63,10 +70,6 @@
 
 .inquiries-container {
     width: 100%;
-}
-
-.inquiries-background {
-    
 }
 
 @media screen and (min-width: 768px) {
