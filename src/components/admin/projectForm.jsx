@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from "react";
-
 import "./styles/projectForm.css";
 
-const ProjectForm = ({ adminPassword }) => {
+const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
     const [formData, setFormData] = useState({
-        title: '',
-        date: '',
-        category: '',
-        description: '',
-        problem: '',
-        technologies: '',
-        imageUrl: '',
-        githubUrl: '',
-        liveUrl: '',
-        contribution: '',
-        challenges: '',
-        lessonsLearned: '',
-        featured: false
+        title: '', date: '', category: '', description: '', problem: '',
+        technologies: '', imageUrl: '', githubUrl: '', liveUrl: '',
+        contribution: '', challenges: '', lessonsLearned: '', featured: false
     });
 
     const [status, setStatus] = useState('');
+
+    useEffect(() => {
+        if (projectToEdit) {
+            setFormData({
+                title: projectToEdit.title || '',
+                date: projectToEdit.date || '',
+                category: projectToEdit.category || '',
+                description: projectToEdit.description || '',
+                problem: projectToEdit.problem || '',
+                technologies: Array.isArray(projectToEdit.technologies) ? projectToEdit.technologies.join(', ') : '',
+                imageUrl: projectToEdit.imageUrl || '',
+                githubUrl: projectToEdit.githubUrl || '',
+                liveUrl: projectToEdit.liveUrl || '',
+                contribution: projectToEdit.contribution || '',
+                challenges: projectToEdit.challenges || '',
+                lessonsLearned: projectToEdit.lessonsLearned || '',
+                featured: !!projectToEdit.featured
+            });
+        }
+    }, [projectToEdit]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -31,17 +40,24 @@ const ProjectForm = ({ adminPassword }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus('Submitting...');
+        setStatus('Submitting updates...');
 
         const processedData = {
             ...formData,
-            technologies: typeof formData.technologies === 'string' && formData.technologies.trim() !== '' ? formData.technologies.split(',').map((tech) => tech.trim()).filter(Boolean) : []
-        }
+            technologies: typeof formData.technologies === 'string' && formData.technologies.trim() !== '' 
+                ? formData.technologies.split(',').map((tech) => tech.trim()).filter(Boolean) 
+                : []
+        };
 
         try {
             const baseUrl = import.meta.env.VITE_API_URL;
-            const response = await fetch(`${baseUrl}/api/projects`, {
-                method: 'POST',
+            
+            const url = projectToEdit ? `${baseUrl}/api/projects/${projectToEdit._id}` : `${baseUrl}/api/projects`;
+                
+            const method = projectToEdit ? 'PATCH' : 'POST';
+
+            const response = await fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json',
                     'x-admin-password': adminPassword
@@ -50,88 +66,90 @@ const ProjectForm = ({ adminPassword }) => {
             });
 
             if (response.ok) {
-                setStatus('Project added successfully!');
-
-                setFormData({
-                    title: '', date: '', category: '', description: '', problem: '', 
-                    technologies: '', imageUrl: '', githubUrl: '', liveUrl: '', contribution: '',
-                    challenges: '', lessonsLearned: '', featured: false
-                });
-            }
-            else {
+                setStatus(projectToEdit ? 'Project updated successfully!' : 'Project added successfully!');
+                
+                if (!projectToEdit) {
+                    setFormData({
+                        title: '', date: '', category: '', description: '', problem: '', 
+                        technologies: '', imageUrl: '', githubUrl: '', liveUrl: '', contribution: '',
+                        challenges: '', lessonsLearned: '', featured: false
+                    });
+                }
+                
+                if (onSuccess) {
+                    setTimeout(() => onSuccess(), 1000);
+                }
+            } else {
                 const errData = await response.json();
-                setStatus(`Error: ${errData.error || 'Failed to save project.'}`);
+                setStatus(`Error: ${errData.error || 'Failed to complete transaction.'}`);
             }
-        }
-        catch (error) {
+        } catch (error) {
             setStatus('Network error. Could not connect to server.');
         }
     }
 
     return (
-        <>
-            <div className="container">
-                <h2>Add new Portfolio Project</h2>
-                <i><span className='required-star'>*</span> Indicates required field</i><br/><br/>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <div>
-                        <label htmlFor="">Project Title <span className='required-star'>*</span></label>
-                        <input type="text" name="title" value={formData.title} onChange={handleChange} required  id="title" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Category <span className='required-star'>*</span></label>
-                        <input type="text" name="category" value={formData.category} onChange={handleChange} required  id="title" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Description</label>
-                        <input type="text" name="description" value={formData.description} onChange={handleChange} id="description" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Date</label>
-                        <input type="text" name="date" value={formData.date} onChange={handleChange} id="date" />
-                    </div>
-                    <div>
-                        <label htmlFor="">The Problem</label>
-                        <input type="text" name="problem" value={formData.problem} onChange={handleChange}  id="problem" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Technologies</label>
-                        <input type="text" name="technologies" value={formData.technologies} onChange={handleChange} id="technologies" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Image URL</label>
-                        <input type="text" name="imageUrl" value={formData.imageUrl} onChange={handleChange} id="imageUrl" />
-                    </div>
-                    <div>
-                        <label htmlFor="">GitHub URL</label>
-                        <input type="text" name="githubUrl" value={formData.githubUrl} onChange={handleChange} id="githubUrl" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Live Site URL</label>
-                        <input type="text" name="liveUrl" value={formData.liveUrl} onChange={handleChange} id="liveUrl" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Your Contribution</label>
-                        <textarea name="contribution" value={formData.contribution} onChange={handleChange} id="contribution"></textarea>
-                    </div>
-                    <div>
-                        <label htmlFor="">Challenges Faced</label>
-                        <textarea name="challenges" value={formData.challenges} onChange={handleChange} id="challenges"></textarea>
-                    </div>
-                    <div>
-                        <label htmlFor="">Lessons Learned</label>
-                        <textarea name="lessonsLearned" value={formData.lessonsLearned} onChange={handleChange} id="lessonsLearned"></textarea>
-                    </div>
-                    <div className="checkbox-form">
-                        <input type="checkbox" name="featured" id="featured" checked={formData.featured} onChange={handleChange}/>
-                        <label htmlFor="featured">Feature this project</label>
-                    </div>
-                    <button type="submit">Save Project to Database</button>
-                    {status && <p style={{ fontWeight:'bold', marginTop: '15px' }}>{status}</p>}
-                </form>
-            </div>
-        </>
-    )
-}
+        <div className="project-form-container">
+            <h2>{projectToEdit ? `Edit Project: ${projectToEdit.title}` : 'Add New Portfolio Project'}</h2>
+            <i><span className='required-star'>*</span> Indicates required field</i><br/><br/>
+            <form onSubmit={handleSubmit} className="project-form">
+                <div>
+                    <label>Project Title <span className='required-star'>*</span></label>
+                    <input type="text" name="title" value={formData.title} onChange={handleChange} required id="title" />
+                </div>
+                <div>
+                    <label>Category <span className='required-star'>*</span></label>
+                    <input type="text" name="category" value={formData.category} onChange={handleChange} required id="category" />
+                </div>
+                <div>
+                    <label>Description</label>
+                    <textarea type="text" name="description" value={formData.description} onChange={handleChange} id="description" />
+                </div>
+                <div>
+                    <label>Date</label>
+                    <input type="text" name="date" value={formData.date} onChange={handleChange} id="date" />
+                </div>
+                <div>
+                    <label>The Problem</label>
+                    <input type="text" name="problem" value={formData.problem} onChange={handleChange} id="problem" />
+                </div>
+                <div>
+                    <label>Technologies (Comma separated)</label>
+                    <input type="text" name="technologies" value={formData.technologies} onChange={handleChange} id="technologies" placeholder="React, Node.js, Express" />
+                </div>
+                <div>
+                    <label>Image URL</label>
+                    <input type="text" name="imageUrl" value={formData.imageUrl} onChange={handleChange} id="imageUrl" />
+                </div>
+                <div>
+                    <label>GitHub URL</label>
+                    <input type="text" name="githubUrl" value={formData.githubUrl} onChange={handleChange} id="githubUrl" />
+                </div>
+                <div>
+                    <label>Live Site URL</label>
+                    <input type="text" name="liveUrl" value={formData.liveUrl} onChange={handleChange} id="liveUrl" />
+                </div>
+                <div>
+                    <label>Your Contribution</label>
+                    <textarea name="contribution" value={formData.contribution} onChange={handleChange} id="contribution"></textarea>
+                </div>
+                <div>
+                    <label>Challenges Faced</label>
+                    <textarea name="challenges" value={formData.challenges} onChange={handleChange} id="challenges"></textarea>
+                </div>
+                <div>
+                    <label>Lessons Learned</label>
+                    <textarea name="lessonsLearned" value={formData.lessonsLearned} onChange={handleChange} id="lessonsLearned"></textarea>
+                </div>
+                <div className="checkbox-form">
+                    <input type="checkbox" name="featured" id="featured" checked={formData.featured} onChange={handleChange}/>
+                    <label htmlFor="featured">Feature this project</label>
+                </div>
+                <button type="submit">{projectToEdit ? 'Update Project' : 'Save Project to Database'}</button>
+                {status && <p style={{ fontWeight:'bold', marginTop: '15px' }}>{status}</p>}
+            </form>
+        </div>
+    );
+};
 
 export default ProjectForm;

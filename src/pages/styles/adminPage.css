@@ -1,8 +1,72 @@
 .login-container {
-    height: 1080px;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: var(--gap-big);
+}
+
+.login-form {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .login-form {
+        width: 50%;
+    }
+}
+
+.admin-dashboard {
+    min-height: 1000px;
+}
+
+.dashboard-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.management-list {
+    background-color: var(--secondary-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.management-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--gap-small) var(--gap-moderate);
+    border-bottom: 1px solid var(--quarternary-color);
+}
+
+.management-row:last-child {
+    border-bottom: none;
+}
+
+.row-title {
+    color: var(--text-color);
+}
+
+.row-actions {
+    display: flex;
+    gap: var(--gap-small);
+}
+
+.add-btn {
+    background-color: var(--semantic-green);
+    margin-bottom: var(--gap-moderate);
+}
+
+.cancel-btn {
+    margin-bottom: var(--gap-moderate);
+}
+
+.edit-btn {
+    background-color: var(--semantic-blue);
+}
+
+.delete-btn {
+    background-color: var(--semantic-red);
 }

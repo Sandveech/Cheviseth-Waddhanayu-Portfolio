@@ -5,6 +5,8 @@ import TechnologyTag from './technologyTag';
 import "./styles/projectCard.css";
 
 const ProjectCard = ({ project }) => {
+    if (!project.featured) { return null; }
+
     return (
         <>
             <div className='card-container'>

@@ -4,7 +4,7 @@ import ProjectCard from "./projectCard";
 
 import "./styles/projectsList.css";
 
-const ProjectsList = ({ category }) => {
+const ProjectsList = ({ category, featured }) => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');

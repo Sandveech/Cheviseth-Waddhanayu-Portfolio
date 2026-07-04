@@ -55,11 +55,18 @@ input, textarea {
     width: 100%;
     padding: 8px;
     background-color: var(--text-color);
+    font-size: 1rem;
 }
 
 textarea {
     resize: none;
     min-height: 8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-moderate);
 }
 
 @media screen and (min-width: 768px) {

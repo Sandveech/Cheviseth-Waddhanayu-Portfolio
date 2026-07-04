@@ -52,7 +52,7 @@ const ContactForm = () => {
         <>
             <i><span className='required-star'>*</span> Indicates required field</i><br/><br/>
 
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)} className="contact-form">
                 <div className="field-container">
                     <label htmlFor="">Full Name <span className='required-star'>*</span></label>
                     <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} id="fullName" required/>

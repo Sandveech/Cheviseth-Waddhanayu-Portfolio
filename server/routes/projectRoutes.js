@@ -64,12 +64,14 @@ router.patch('/:id', requireAdmin, async (req, res) => {
         const updatedProject = await Project.findByIdAndUpdate(
             req.params.id,
             req.body,
-            { new: true, runValidators: true }
+            { returnDocument: true, runValidators: true }
         );
 
         if (!updatedProject) {
             return res.status(404).json({ error: "Project not found." });
         }
+
+        return res.status(200).json(updatedProject);
     }
     catch (err) {
         res.status(400).json({ error: err.message });
