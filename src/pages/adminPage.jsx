@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
+import NavBar from "../components/common/navBar.jsx";
 import Footer from "../components/common/footer.jsx";
 
 import ProjectForm from "../components/admin/projectForm.jsx";
+
+import "./styles/adminPage.css";
 
 const AdminPage = () => {
     const [passwordInput, setPasswordInput] = useState('');
@@ -39,6 +42,7 @@ const AdminPage = () => {
     if (token) {
         return (
             <>
+                <NavBar/>
                 <ProjectForm adminPassword={token}/>
                 <Footer/>
             </>
@@ -47,8 +51,9 @@ const AdminPage = () => {
 
     return (
         <>
-            <div>
-                <h2>Admin Authentication Required</h2>
+            <NavBar/>
+            <div className="container login-container">
+                <h2>Password Required</h2>
                 <form onSubmit={handleLogin}>
                     <input type="password" placeholder="Enter Admin Password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} required/>
                     <button type="submit">Login</button>

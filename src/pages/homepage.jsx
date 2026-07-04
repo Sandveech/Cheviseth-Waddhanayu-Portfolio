@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 import NavBar from "../components/common/navBar.jsx";
 import Footer from "../components/common/footer.jsx";
-import ProjectsList from "../components/projects/projectsList.jsx";
 import ContactForm from "../components/contact/contactForm.jsx";
 
 import INFO from "../data/user.js";
@@ -15,18 +14,13 @@ const Homepage = () => {
     return (
         <>
             <div className="page-content">
-                <div className="header-container">
-                    <div className="header-background">
-                        <h1>CHEVISETH WADDHANAYU</h1>
-                    </div>
-                </div>
                 <NavBar/>
                 <div className="hero-container" id="home">
                     <div className="hero-background">
                         <div className="hero-overlay">
                             <div className="hero-text">
                                 <h2>{INFO.main.title}</h2><br/>
-                                <button><a href="#projects">View My Projects</a></button>
+                                <button><Link to="/projects">View My Projects</Link></button>
                             </div>
                         </div>
                     </div>
@@ -38,20 +32,29 @@ const Homepage = () => {
                         <p>{INFO.about.description}</p>
                     </div>
                 </div>
-                <div className={"container projects-container"} id="projects">
-                    <h2>PROJECTS</h2><br/>
-                    <div className="projects-background">
-                        <ProjectsList/>
+                <div className={"container highlights-container"} id="highlights">
+                    <h2>HIGHLIGHTS</h2><br/>
+                    <div className="highlights-background">
+                        <p>meow</p>
+                        <p>meow</p>
+                        <p>meow</p>
+                        <p>meow</p>
                     </div>
                 </div>
                 <div className={"container contact-container"} id="contact">
                     <div className="contact-info-container">
                         <h2>CONTACT INFO</h2><br/>
-                        <div className="contact-info-background">
-                            <p>waddhnayucheviseth@gmail.com</p>
-                            <a href={INFO.links.linkedin}>LinkedIn</a>
-                            <a href={INFO.links.github}>GitHub</a>
-                        </div>
+                        <ul className="contact-info-background">
+                            <li>
+                                <p>{INFO.main.email}</p>
+                            </li>
+                            <li>
+                                <a href={INFO.links.linkedin}>LinkedIn</a>
+                            </li>
+                            <li>
+                                <a href={INFO.links.github}>GitHub</a>
+                            </li>
+                        </ul>
                     </div>
                     <div className="inquiries-container">
                         <h2>INQUIRIES</h2><br/>

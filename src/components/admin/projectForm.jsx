@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 
+import "./styles/projectForm.css";
+
 const ProjectForm = ({ adminPassword }) => {
     const [formData, setFormData] = useState({
         title: '',
+        date: '',
+        category: '',
         description: '',
         problem: '',
         technologies: '',
@@ -49,8 +53,8 @@ const ProjectForm = ({ adminPassword }) => {
                 setStatus('Project added successfully!');
 
                 setFormData({
-                    title: '', description: '', problem: '', technologies: '',
-                    imageUrl: '', githubUrl: '', liveUrl: '', contribution: '',
+                    title: '', date: '', category: '', description: '', problem: '', 
+                    technologies: '', imageUrl: '', githubUrl: '', liveUrl: '', contribution: '',
                     challenges: '', lessonsLearned: '', featured: false
                 });
             }
@@ -66,16 +70,25 @@ const ProjectForm = ({ adminPassword }) => {
 
     return (
         <>
-            <div>
+            <div className="container">
                 <h2>Add new Portfolio Project</h2>
+                <i><span className='required-star'>*</span> Indicates required field</i><br/><br/>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div>
-                        <label htmlFor="">Project Title *</label>
+                        <label htmlFor="">Project Title <span className='required-star'>*</span></label>
                         <input type="text" name="title" value={formData.title} onChange={handleChange} required  id="title" />
+                    </div>
+                    <div>
+                        <label htmlFor="">Category <span className='required-star'>*</span></label>
+                        <input type="text" name="category" value={formData.category} onChange={handleChange} required  id="title" />
                     </div>
                     <div>
                         <label htmlFor="">Description</label>
                         <input type="text" name="description" value={formData.description} onChange={handleChange} id="description" />
+                    </div>
+                    <div>
+                        <label htmlFor="">Date</label>
+                        <input type="text" name="date" value={formData.date} onChange={handleChange} id="date" />
                     </div>
                     <div>
                         <label htmlFor="">The Problem</label>
@@ -109,7 +122,7 @@ const ProjectForm = ({ adminPassword }) => {
                         <label htmlFor="">Lessons Learned</label>
                         <textarea name="lessonsLearned" value={formData.lessonsLearned} onChange={handleChange} id="lessonsLearned"></textarea>
                     </div>
-                    <div>
+                    <div className="checkbox-form">
                         <input type="checkbox" name="featured" id="featured" checked={formData.featured} onChange={handleChange}/>
                         <label htmlFor="featured">Feature this project</label>
                     </div>

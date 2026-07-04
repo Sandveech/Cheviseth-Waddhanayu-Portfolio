@@ -1,20 +1,35 @@
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/Project');
+const jwt = require('jsonwebtoken');
 
 const requireAdmin = (req, res, next) => {
-    const authHeader = req.headers['x-admin-password'];
-    if (authHeader === process.env.ADMIN_PASSWORD) {
+    const token = req.headers['x-admin-password'];
+
+    if (!token) {
+        return res.status(401).json({ error: "Access Denied: No token provided." });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = decoded;
         next();
     }
-    else {
-       res.status(401).json({ error: "Unauthorized: Invalid Admin Password." }); 
+    catch (err) {
+        return res.status(403).json({ error: "Invalid or expired token." });
     }
 }
 
 router.get('/', async (req, res) => {
     try {
-        const projects = await Project.find();
+        const { category } = req.query;
+        let filter = {};
+
+        if (category) {
+            filter.category = category;
+        }
+
+        const projects = await Project.find(filter);
         res.json(projects);
     }   
     catch (err) {

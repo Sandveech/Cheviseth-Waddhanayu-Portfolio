@@ -4,7 +4,7 @@ import ProjectCard from "./projectCard";
 
 import "./styles/projectsList.css";
 
-const ProjectsList = () => {
+const ProjectsList = ({ category }) => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -13,10 +13,10 @@ const ProjectsList = () => {
         const fetchProjects = async () => {
             try {
                 const baseUrl = import.meta.env.VITE_API_URL;
-                const response = await fetch(`${baseUrl}/api/projects`);
+                const response = await fetch(`${baseUrl}/api/projects?category=${category.toLowerCase()}`);
                
                 if (!response.ok) {
-                    throw new Error('Failed to fetch projects.');
+                    throw new Error(`Failed to fetch ${category} projects.`);
                 }
 
                 const data = await response.json();
@@ -39,7 +39,7 @@ const ProjectsList = () => {
 
     return (
         <>
-            <div>
+            <div className="projects-list-container">
                 {projects.map((item) => (
                     <ProjectCard key={item._id} project={item}/>
                 ))}

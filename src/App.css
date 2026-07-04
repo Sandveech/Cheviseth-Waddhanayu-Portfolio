@@ -28,6 +28,38 @@ a:hover {
 
 button {
     border: none;
+    background-color: var(--primary-color);
+    padding: 0.75rem;
+    transition: color 0.1s ease-in-out,
+                background-color 0.1s ease-in-out;
+}
+
+button:hover {
+    color: var(--primary-color);
+    background-color: var(--text-color);
+    transition: color 0.1s ease-in-out,
+                background-color 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+button a {
+    text-decoration: none;
+}
+
+button:hover a {
+    color: var(--primary-color);
+}
+
+input, textarea {
+    color: var(--tertiary-color);
+    width: 100%;
+    padding: 8px;
+    background-color: var(--text-color);
+}
+
+textarea {
+    resize: none;
+    min-height: 8rem;
 }
 
 @media screen and (min-width: 768px) {

@@ -1,12 +1,27 @@
-@import "../../../data/styles.css";
+.header-container {
+    z-index: 999;
+    top: 0px;
+    height: 80px;
+}
+
+.header-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    height: 100%;
+}
 
 .nav-container {
-    display: none;
     position: sticky;
     top: 0px;
     z-index: 999;
     width: 100%;
     border-bottom: 1px solid var(--quarternary-color);
+}
+
+.navbar {
+    position: relative;
 }
 
 .nav-background {
@@ -18,29 +33,52 @@
     padding: 24px;
 }
 
-a {
-    color: var(--text-color);
+.burger-menu {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.nav-item a {
     text-decoration: none;
 }
 
 .nav-list {
-    display: flex;
+    display: none;
     list-style: none;
-    gap: 48px;
+    gap: var(--gap-moderate);
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background-color: var(--secondary-color);
+    flex-direction: column;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--quarternary-color);
+    box-sizing: border-box;
 }
 
-.nav-item a {
-    transition: color 0.1s ease-in-out;
+.nav-list.open {
+    display: flex; 
 }
 
-.nav-item a:hover {
-    color: var(--primary-color);
-    transition: color 0.1s ease-in-out;
+@media screen and (min-width: 768px) {
+    .nav-list {
+        display: flex;
+        flex-direction: row; /* Return links side-by-side */
+        position: static;    /* Bring it back into normal document flow */
+        padding: 0;
+        border-bottom: none;
+        gap: 48px;
+        width: auto;
+    }
+    .burger-menu {
+        display: none;
+    }
 }
-
-/* @media screen and (min-width: 768px) {
-
-} */
 
 @media screen and (min-width: 1024px) {
     .nav-container {

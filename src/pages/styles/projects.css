@@ -1,0 +1,6 @@
+.projects-container {
+    background-color: var(--tertiary-color);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-large);
+}

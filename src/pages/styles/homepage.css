@@ -1,18 +1,3 @@
-.header-container {
-    position: sticky;
-    z-index: 999;
-    top: 0px;
-    height: 80px;
-}
-
-.header-background {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    height: 100%;
-}
-
 .hero-background {
     background-image: url("../../assets/hero.gif");
     height: 1000px;
@@ -50,12 +35,12 @@
     border-radius: 360px;
 }
 
-.projects-container {
+.highlights-container {
     background-color: var(--secondary-color);
 }
 
-.projects-background {
-    
+.highlights-background {
+
 }
 
 .contact-container {
@@ -70,7 +55,10 @@
 }
 
 .contact-info-background {
-    
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: var(--gap-big);
 }
 
 .inquiries-container {

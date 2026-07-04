@@ -1,5 +1,7 @@
 import React from 'react';
 
+import TechnologyTag from './technologyTag';
+
 import "./styles/projectCard.css";
 
 const ProjectCard = ({ project }) => {
@@ -9,26 +11,56 @@ const ProjectCard = ({ project }) => {
                 <img src={project.imageUrl} alt={project.title} className="cover-image" />
                 <div className="contents">
                     <div className="brief">
-                        <h3>{project.title}</h3>
+                        <h3 className="project-title">
+                            {project.liveUrl ? (
+                                <a href={project.liveUrl}>{project.title}</a>) : (project.title
+                            )}
+                        </h3><br/>
+                        {project.date && (
+                            <p className="date">{project.date}</p>
+                        )}
+                        <h4>Description</h4>
                         <p>{project.description}</p>
                     </div>
-                    <div className="contribution">
-                        <h4>Contribution</h4>
-                        <p>{project.contribution}</p>
-                    </div>
-                    <p>{project.technologies}</p>
-                    <div>
-                        <h4>Problem</h4>
-                        <p>{project.problem}</p>
-                    </div>
-                    <div className="challenges">
-                        <h4>Challenges</h4>
-                        <p>{project.challenges}</p>
-                    </div>
-                    <div className="lessons-learned">
-                        <h4>Lessons Learned</h4>
-                        <p>{project.lessonsLearned}</p>
-                    </div>
+                    {project.technologies && (
+                        <div className="technologies">
+                            <h4>Technologies</h4>
+                            <div className="technology-tags-container">
+                                {project.technologies.map((item) => (
+                                    <TechnologyTag technology={item}/>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {project.githubUrl && (
+                        <div className="github">
+                           <a href={project.githubUrl}>Project GitHub</a>
+                        </div>
+                    )}
+                    {project.contribution && (
+                        <div className="contribution">
+                            <h4>Contribution</h4>
+                            <p>{project.contribution}</p>
+                        </div>
+                    )}
+                    {project.problem && (
+                        <div class="problem">
+                            <h4>Problem</h4>
+                            <p>{project.problem}</p>
+                        </div>
+                    )}
+                    {project.challenges && (
+                        <div className="challenges">
+                            <h4>Challenges</h4>
+                            <p>{project.challenges}</p>
+                        </div>
+                    )}
+                    {project.lessonsLearned && (
+                        <div className="lessons-learned">
+                            <h4>Lessons Learned</h4>
+                            <p>{project.lessonsLearned}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

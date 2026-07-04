@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import './App.css'
 
 import Homepage from "./pages/homepage.jsx";
+import Projects from "./pages/projects.jsx";
 import NotFound from './pages/404.jsx';
 import AdminPage from './pages/adminPage.jsx';
 
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/projects" element={<Projects />}/>
         <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<NotFound />}/>
       </Routes>  
