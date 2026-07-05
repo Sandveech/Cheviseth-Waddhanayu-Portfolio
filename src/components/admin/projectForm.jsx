@@ -54,7 +54,7 @@ const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
             const baseUrl = import.meta.env.VITE_API_URL;
             const url = projectToEdit ? `${baseUrl}/api/projects/${projectToEdit._id}` : `${baseUrl}/api/projects`;
             const method = projectToEdit ? 'PATCH' : 'POST';
-            const token = localStorage.getItem('authToken');
+            const token = adminPassword;
 
             const response = await fetch(url, {
                 method: method,
