@@ -84,7 +84,15 @@ const AdminPage = () => {
                 setProjects(projects.filter(p => p._id !== projectId));
             } else {
                 const errData = await response.json();
-                alert(`Error: ${errData.error || 'Failed to delete project.'}`);
+
+                if (response.status == 401) {
+                    localStorage.removeItem('authToken');
+                    alert('Your session has expired. Please log in again.');
+                    window.location.reload();
+                }
+                else {
+                    alert(`Error: ${errData.error || 'Failed to delete project.'}`);
+                }
             }
         } catch (err) {
             alert("Network error. Could not complete deletion request.");

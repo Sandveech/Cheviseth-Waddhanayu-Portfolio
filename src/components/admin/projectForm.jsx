@@ -82,7 +82,15 @@ const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
                 }
             } else {
                 const errData = await response.json();
-                setStatus(`Error: ${errData.error || 'Failed to complete transaction.'}`);
+
+                if (response.status == 401) {
+                    localStorage.removeItem('authToken');
+                    alert('Your session has expired. Please log in again.');
+                    window.location.reload();
+                }
+                else {
+                    setStatus(`Error: ${errData.error || 'Failed to complete transaction.'}`);
+                }
             }
         } catch (error) {
             setStatus('Network error. Could not connect to server.');
