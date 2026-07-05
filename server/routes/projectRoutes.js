@@ -1,24 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/Project');
-const jwt = require('jsonwebtoken');
-
-const requireAdmin = (req, res, next) => {
-    const token = req.headers['x-admin-password'];
-
-    if (!token) {
-        return res.status(401).json({ error: "Access Denied: No token provided." });
-    }
-
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
-        next();
-    }
-    catch (err) {
-        return res.status(403).json({ error: "Invalid or expired token." });
-    }
-}
+const verifyToken = require('../middleware/authMiddleware');
 
 router.get('/', async (req, res) => {
     try {
@@ -47,7 +30,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/', requireAdmin, async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
     try {
         const newProject = new Project(req.body);
         const savedProject = newProject.save();
@@ -59,7 +42,7 @@ router.post('/', requireAdmin, async (req, res) => {
     }
 });
 
-router.patch('/:id', requireAdmin, async (req, res) => {
+router.patch('/:id', verifyToken, async (req, res) => {
     try {
         const updatedProject = await Project.findByIdAndUpdate(
             req.params.id,
@@ -78,7 +61,7 @@ router.patch('/:id', requireAdmin, async (req, res) => {
     }
 })
 
-router.delete('/:id', requireAdmin, async (req, res) => {
+router.delete('/:id', verifyToken, async (req, res) => {
     try {
         const deletedProject = await Project.findByIdAndDelete(req.params.id);
 

@@ -5,12 +5,14 @@ import TechnologyTag from './technologyTag';
 import "./styles/projectCard.css";
 
 const ProjectCard = ({ project }) => {
-    if (!project.featured) { return null; }
+    if (!project?.featured) { return null; }
 
     return (
         <>
             <div className='card-container'>
-                <img src={project.imageUrl} alt={project.title} className="cover-image" />
+                {project.imageUrl && (
+                    <img src={project.imageUrl} alt={project.title} className="cover-image" />
+                )}
                 <div className="contents">
                     <div className="brief">
                         <h3 className="project-title">
@@ -32,8 +34,8 @@ const ProjectCard = ({ project }) => {
                         <div className="technologies">
                             <h4>Technologies</h4>
                             <div className="technology-tags-container">
-                                {project.technologies.map((item) => (
-                                    <TechnologyTag technology={item}/>
+                                {project.technologies.map((item, index) => (
+                                    <TechnologyTag key={index} technology={item}/>
                                 ))}
                             </div>
                         </div>
@@ -50,7 +52,7 @@ const ProjectCard = ({ project }) => {
                         </div>
                     )}
                     {project.problem && (
-                        <div class="problem">
+                        <div className="problem">
                             <h4>Problem</h4>
                             <p>{project.problem}</p>
                         </div>

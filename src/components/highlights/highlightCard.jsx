@@ -32,8 +32,8 @@ const HighlightCard = ({ project }) => {
                         <div className="technologies">
                             <h4>Technologies</h4>
                             <div className="technology-tags-container">
-                                {project.technologies.map((item) => (
-                                    <TechnologyTag technology={item}/>
+                                {project.technologies.map((item, index) => (
+                                    <TechnologyTag key={index} technology={item}/>
                                 ))}
                             </div>
                         </div>

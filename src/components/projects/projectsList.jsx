@@ -40,7 +40,7 @@ const ProjectsList = ({ category, featured }) => {
     return (
         <>
             <div className="projects-list-container">
-                {projects.map((item) => (
+                {projects?.map((item) => (
                     <ProjectCard key={item._id} project={item}/>
                 ))}
             </div>

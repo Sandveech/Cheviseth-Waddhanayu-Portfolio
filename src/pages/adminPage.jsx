@@ -8,7 +8,7 @@ import "./styles/adminPage.css";
 
 const AdminPage = () => {
     const [passwordInput, setPasswordInput] = useState('');
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState(() => localStorage.getItem('authToken'));
     const [error, setError] = useState('');
     
     const [projects, setProjects] = useState([]);
@@ -35,6 +35,11 @@ const AdminPage = () => {
         }
     }, [token]);
 
+    useEffect(() => {
+        const savedToken = localStorage.getItem('authToken');
+        if (savedToken) { setToken(savedToken); }
+    }, [])
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
@@ -49,6 +54,7 @@ const AdminPage = () => {
             const data = await response.json();
 
             if (response.ok && data.success) {
+                localStorage.setItem('authToken', data.token);
                 setToken(data.token);
             } else {
                 setError(data.error || 'Authentication failed');
@@ -64,13 +70,13 @@ const AdminPage = () => {
     };
 
     const handleDeleteClick = async (projectId) => {
-        if (!window.confirm("Are you absolutely sure you want to delete this project?")) return;
+        if (!window.confirm("Are you absolutely sure you want to delete this project?")) { return; }
 
         try {
             const response = await fetch(`${baseUrl}/api/projects/${projectId}`, {
                 method: 'DELETE',
                 headers: {
-                    'x-admin-password': token
+                    'Authorization': `Bearer ${token}`
                 }
             });
 

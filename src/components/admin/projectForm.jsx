@@ -61,7 +61,7 @@ const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
                 method: method,
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-admin-password': adminPassword
+                    'Authorization': `Bearer ${adminPassword}`
                 },
                 body: JSON.stringify(processedData)
             });
