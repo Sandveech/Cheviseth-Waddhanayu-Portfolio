@@ -54,7 +54,7 @@ cp .env.example .env
 
 #### Configure the `.env` file
 ```
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/instance
 PORT=3001
 ADMIN_PASSWORD=12345678
 JWT_SECRET=jwt_secret_key
