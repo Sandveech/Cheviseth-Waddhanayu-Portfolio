@@ -23,10 +23,6 @@ app.use('/api/projects', projectRoutes);
 const authRoutes = require('./routes/authRoutes.js');
 app.use('/api/auth', authRoutes);
 
-app.get("/page", async (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'page.html'));
-});
-
 // db connection
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri)
@@ -37,8 +33,8 @@ mongoose.connect(uri)
         console.error("--- DETAILED MONGO ERROR END ---");
     });
 
-app.get("api/data", async (req, res) => {
-    res.json({ message: "Hello from the backend!" });
+app.get("/", async (req, res) => {
+    res.status(200).json({ status: 'ok' })
 });
 
 const PORT = process.env.PORT || 3001;
