@@ -85,7 +85,7 @@ const AdminPage = () => {
             } else {
                 const errData = await response.json();
 
-                if (response.status == 401) {
+                if (response.status === 401 || response.status === 403) {
                     localStorage.removeItem('authToken');
                     alert('Your session has expired. Please log in again.');
                     window.location.reload();
