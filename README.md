@@ -89,11 +89,11 @@ The backend will run on http://localhost:3001
 - `POST /api/auth/login` - Admin login
 
 ### Screenshots
-https://github.com/Sandveech/Cheviseth-Waddhanayu-Portfolio/blob/images/screenshot-1.png
+![Screenshot](https://github.com/Sandveech/Cheviseth-Waddhanayu-Portfolio/blob/images/screenshot-1.png)
 
-https://github.com/Sandveech/Cheviseth-Waddhanayu-Portfolio/blob/images/screenshot-2.png
+![Screenshot](https://github.com/Sandveech/Cheviseth-Waddhanayu-Portfolio/blob/images/screenshot-2.png)
 
-https://github.com/Sandveech/Cheviseth-Waddhanayu-Portfolio/blob/images/screenshot-3.png
+![Screenshot](https://github.com/Sandveech/Cheviseth-Waddhanayu-Portfolio/blob/images/screenshot-3.png)
 
 ### Live Website URL
 https://main.d55658nwiu1i9.amplifyapp.com
