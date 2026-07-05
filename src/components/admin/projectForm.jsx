@@ -115,7 +115,7 @@ const ProjectForm = ({ adminPassword, projectToEdit, onSuccess }) => {
                     <input type="text" name="problem" value={formData.problem} onChange={handleChange} id="problem" />
                 </div>
                 <div>
-                    <label>Technologies (Comma separated)</label>
+                    <label>Technologies</label>
                     <input type="text" name="technologies" value={formData.technologies} onChange={handleChange} id="technologies" placeholder="React, Node.js, Express" />
                 </div>
                 <div>
